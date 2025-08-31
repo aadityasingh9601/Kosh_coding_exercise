@@ -5,13 +5,10 @@
   "description": "Transfer table data from App A to form in App B",
   "icons": {
     "48": "images/icon.png"
-    //"128": "images/icon-128.png"
   },
-  // These permissions are needed if we want to inject our contentScripts on the host page.
   "permissions": ["activeTab", "scripting", "storage"],
 
   "content_scripts": [
-    //We've created separate contentScripts for both web pages.
     {
       "matches": ["https://www.w3schools.com/html/html_tables.asp"],
       "js": ["contentScript.js"]
@@ -23,14 +20,8 @@
       "js": ["formFill.js"]
     }
   ],
-  //This key is important to use the chrome.action api & show the popup that we can click.
   "action": {
-    // "default_icon": {
-    //   "16": "images/icon16.png", // optional
-    //   "24": "images/icon24.png", // optional
-    //   "32": "images/icon32.png" // optional
-    // },
-    "default_title": "Click Me", // optional, shown in tooltip
-    "default_popup": "popup.html" // optional
+    "default_title": "Click Me",
+    "default_popup": "popup.html"
   }
 }
