@@ -1,6 +1,5 @@
 const transferButton = document.getElementById("transferBtn");
 
-//Add a event listener on the button.
 transferButton.addEventListener("click", async () => {
   //Get the current active tab, as we'll need it while sending the msg to get the data.
   const [tab] = await chrome.tabs.query({
@@ -9,13 +8,12 @@ transferButton.addEventListener("click", async () => {
   });
   //Send message to contentScript.js to give us the data.
   const response = await chrome.tabs.sendMessage(tab.id, { action: "getData" });
-  // do something with response here, not outside the function.
-  //console.log(response);
+
   if (!response) {
     return alert("Data not received!");
   }
+
   //Now that we've the data, store it locally for a while as we'll be using it on the web page B.
-  //Store the data locally.
   await chrome.storage.local.set({ transferData: response });
 
   //Open the second tab here, rest of the work will happen on that page now.
